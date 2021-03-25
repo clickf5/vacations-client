@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import 'regenerator-runtime/runtime';
 import { AuthProvider } from './hooks/useAuth';
 import App from './App.jsx';
 import getStore from './store';
