@@ -1,4 +1,4 @@
-const host = '';
+const host = 'http://127.0.0.1:9999';
 const prefix = 'api/v1';
 
 export default {
