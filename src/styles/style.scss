@@ -1,0 +1,9 @@
+@mixin mt($val) {
+  .mt-#{$val} {
+    margin-top: "#{$val}px";
+  }
+}
+
+@for $i from 1 through 3 {
+  @include mt($i)
+}
