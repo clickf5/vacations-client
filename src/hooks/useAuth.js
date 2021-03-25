@@ -5,23 +5,9 @@ const authContext = createContext();
 const useAuthProvider = () => {
   const [user, setUser] = useState();
 
-  const signin = () => {
-
-  };
-
-  const signout = () => {
-
-  };
-
-  const signup = () => {
-
-  };
-
   return {
     user,
-    signin,
-    signout,
-    signup,
+    setUser,
   };
 };
 
