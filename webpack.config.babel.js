@@ -41,6 +41,9 @@ module.exports = {
   ],
   devServer: {
     host: 'localhost',
+    proxy: {
+      '/api': 'http://localhost:9999',
+    },
     compress: true,
     port: 9000,
     historyApiFallback: true,
