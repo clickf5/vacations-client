@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Main from './components/Main.jsx';
 import SignInContainer from './components/Signin/SignInContainer.jsx';
+import SignUpContainer from './components/Signup/SignUpContainer.jsx';
 
 const App = () => (
   <Router>
@@ -17,7 +18,7 @@ const App = () => (
         <SignInContainer />
       </Route>
       <Route exact path="/signup">
-        <div>Signup!</div>
+        <SignUpContainer />
       </Route>
       <Route path="*">
         <div>404</div>
