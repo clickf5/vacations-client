@@ -5,6 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Main from './components/Main.jsx';
+import SignInContainer from './components/Signin/SignInContainer.jsx';
 
 const App = () => (
   <Router>
@@ -13,7 +14,7 @@ const App = () => (
         <Main />
       </Route>
       <Route exact path="/signin">
-        <div>Signin!</div>
+        <SignInContainer />
       </Route>
       <Route exact path="/signup">
         <div>Signup!</div>
