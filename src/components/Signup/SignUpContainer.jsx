@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import SignUpForm from './SignUpForm.jsx';
@@ -19,6 +19,8 @@ const SignUpContainer = () => {
       .required('Required'),
   });
 
+  const [status, setStatus] = useState(0);
+
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -27,7 +29,8 @@ const SignUpContainer = () => {
   };
 
   const onSubmit = (values) => {
-    alert(JSON.stringify(values, null, 2));
+    // alert(JSON.stringify(values, null, 2));
+    setStatus(1);
   };
 
   const formik = useFormik({
@@ -52,6 +55,7 @@ const SignUpContainer = () => {
       isValid={formik.isValid}
       isSubmitting={formik.isSubmitting}
       inputRef={inputRef}
+      status={status}
     />
   );
 };
