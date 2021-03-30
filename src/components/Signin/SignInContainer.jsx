@@ -32,7 +32,7 @@ const SignInContainer = () => {
 
   useEffect(() => {
     inputRef.current.focus();
-  });
+  }, [inputRef]);
 
   return (
     <SignInForm
