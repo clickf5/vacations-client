@@ -1,11 +1,29 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 
 const SignInForm = (props) => {
   const {
-    handleChange, handleSubmit, values, inputRef,
+    handleChange,
+    handleSubmit,
+    values,
+    inputRef,
+    errors,
+    touched,
   } = props;
+
+  const emailClass = cn(
+    { 'ring-red-500': errors.email && touched.email },
+    { 'ring-2': errors.email && touched.email },
+    { 'placeholder-red-400': errors.email && touched.email },
+  );
+
+  const passwordClass = cn(
+    { 'ring-red-500': errors.password && touched.password },
+    { 'ring-2': errors.password && touched.password },
+    { 'placeholder-red-400': errors.password && touched.password },
+  );
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -25,7 +43,7 @@ const SignInForm = (props) => {
                 <input
                   type="text"
                   id="sign-in-email"
-                  className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className={`${emailClass} rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent`}
                   name="email"
                   placeholder="Your email"
                   onChange={handleChange}
@@ -33,6 +51,11 @@ const SignInForm = (props) => {
                   ref={inputRef}
                 />
               </div>
+              {errors.email && touched.email ? (
+                <p className="text-sm text-red-500 px-1">
+                  {errors.email}
+                </p>
+              ) : null}
             </div>
             <div className="flex flex-col mb-6">
               <div className="flex relative ">
@@ -44,13 +67,18 @@ const SignInForm = (props) => {
                 <input
                   type="password"
                   id="sign-in-email"
-                  className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  className={`${passwordClass} rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent`}
                   name="password"
                   placeholder="Your password"
                   onChange={handleChange}
                   value={values.password}
                 />
               </div>
+              {errors.password && touched.password ? (
+                <p className="text-sm text-red-500 px-1">
+                  {errors.password}
+                </p>
+              ) : null}
             </div>
             <div className="flex items-center mb-6 -mt-4">
               <div className="flex ml-auto">
