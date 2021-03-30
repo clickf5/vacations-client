@@ -4,7 +4,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SignUpForm = (props) => {
-  const { handleChange, handleSubmit, values } = props;
+  const {
+    handleChange, handleSubmit, values, inputRef,
+  } = props;
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
@@ -29,6 +31,7 @@ const SignUpForm = (props) => {
                   placeholder="First name"
                   onChange={handleChange}
                   value={values.firstName}
+                  ref={inputRef}
                 />
               </div>
               <div className=" relative ">

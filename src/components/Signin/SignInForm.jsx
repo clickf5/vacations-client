@@ -3,7 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const SignInForm = (props) => {
-  const { handleChange, handleSubmit, values } = props;
+  const {
+    handleChange, handleSubmit, values, inputRef,
+  } = props;
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -28,6 +30,7 @@ const SignInForm = (props) => {
                   placeholder="Your email"
                   onChange={handleChange}
                   value={values.email}
+                  ref={inputRef}
                 />
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import SignInForm from './SignInForm.jsx';
 
@@ -16,11 +16,18 @@ const SignInContainer = () => {
     onSubmit,
   });
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
   return (
     <SignInForm
       handleChange={formik.handleChange}
       handleSubmit={formik.handleSubmit}
       values={formik.values}
+      inputRef={inputRef}
     />
   );
 };
