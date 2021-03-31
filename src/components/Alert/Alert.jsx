@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
 import cn from 'classnames';
 
 const basicClass = cn(
@@ -38,46 +37,21 @@ const getClass = (type) => classMappers[type];
 
 const Alert = (props) => {
   const {
-    type = 'success',
-    withRedirect = false,
-    redirectTo = '/',
-    seconds = 5,
+    type,
     children,
   } = props;
-
-  const [counter, setCounter] = useState(seconds);
-  const [redirect, setRedirect] = useState(false);
-
-  if (withRedirect) {
-    useEffect(() => {
-      const timerId = setInterval(() => {
-        setCounter((s) => {
-          if (s === 0) {
-            setRedirect(true);
-          }
-          return (s - 1);
-        });
-      }, 1000);
-      return () => clearInterval(timerId);
-    }, []);
-  }
 
   const styleClass = getClass(type);
 
   return (
-    <>
-      {redirect ? <Redirect to={redirectTo} /> : (
-        <div className={styleClass} role="alert">
-          <p className="font-bold">
-            {type.toUpperCase()}
-          </p>
-          <p>
-            {children}
-            {withRedirect ? ` After ${counter} seconds you redirect to "${redirectTo}" page.` : null}
-          </p>
-        </div>
-      )}
-    </>
+    <div className={styleClass} role="alert">
+      <p className="font-bold">
+        {type.toUpperCase()}
+      </p>
+      <p>
+        {children}
+      </p>
+    </div>
   );
 };
 
