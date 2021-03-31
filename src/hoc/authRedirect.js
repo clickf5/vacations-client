@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 export default (Component) => {
   const AuthRedirect = (props) => {
     const auth = useAuth();
-    return (auth.user ? <Component {...props} /> : <Redirect to="/signin" />);
+    return (auth.isAuthenticate ? <Component {...props} /> : <Redirect to="/signin" />);
   };
 
   return AuthRedirect;
