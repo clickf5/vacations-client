@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import RedirectSuccess from '../RedirectSuccess/RedirectSuccess.jsx';
+import Alert from '../Alert/Alert.jsx';
 
 const SignUpForm = (props) => {
   const {
@@ -136,7 +136,7 @@ const SignUpForm = (props) => {
               ) : null}
             </div>
             {status === 1 ? (
-              <RedirectSuccess redirectTo="/signin" />
+              <Alert withRedirect redirectTo="/signin">Congratulations!</Alert>
             ) : null}
             <div className="flex w-full my-4">
               <button type="submit" className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
