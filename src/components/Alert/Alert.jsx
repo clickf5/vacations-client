@@ -69,7 +69,7 @@ const Alert = (props) => {
       {redirect ? <Redirect to={redirectTo} /> : (
         <div className={styleClass} role="alert">
           <p className="font-bold">
-            Success
+            {type.toUpperCase()}
           </p>
           <p>
             {children}
