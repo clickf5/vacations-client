@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import cn from 'classnames';
 
 const basicClass = cn(
@@ -44,16 +44,16 @@ const Alert = (props) => {
     seconds = 5,
     children,
   } = props;
-  const [counter, setCounter] = useState(seconds);
 
-  const history = useHistory();
+  const [counter, setCounter] = useState(seconds);
+  const [redirect, setRedirect] = useState(false);
 
   if (withRedirect) {
     useEffect(() => {
       const timerId = setInterval(() => {
         setCounter((s) => {
-          if (s === 1) {
-            history.push(redirectTo);
+          if (s === 0) {
+            setRedirect(true);
           }
           return (s - 1);
         });
@@ -65,15 +65,19 @@ const Alert = (props) => {
   const styleClass = getClass(type);
 
   return (
-    <div className={styleClass} role="alert">
-      <p className="font-bold">
-        Success
-      </p>
-      <p>
-        {children}
-        {withRedirect ? ` After ${counter} seconds you redirect to "${redirectTo}" page.` : null}
-      </p>
-    </div>
+    <>
+      {redirect ? <Redirect to={redirectTo} /> : (
+        <div className={styleClass} role="alert">
+          <p className="font-bold">
+            Success
+          </p>
+          <p>
+            {children}
+            {withRedirect ? ` After ${counter} seconds you redirect to "${redirectTo}" page.` : null}
+          </p>
+        </div>
+      )}
+    </>
   );
 };
 
