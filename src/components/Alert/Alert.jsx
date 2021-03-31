@@ -71,7 +71,7 @@ const Alert = (props) => {
       </p>
       <p>
         {children}
-        {withRedirect ? ` Congratulations! After ${counter} seconds you redirect to sign in page.` : null}
+        {withRedirect ? ` After ${counter} seconds you redirect to "${redirectTo}" page.` : null}
       </p>
     </div>
   );
