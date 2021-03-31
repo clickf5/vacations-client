@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import SignInForm from './SignInForm.jsx';
+import { useAuth } from '../../hooks/useAuth.js';
 
 const SignInContainer = () => {
   const validationSchema = Yup.object().shape({
@@ -18,8 +19,11 @@ const SignInContainer = () => {
     password: '',
   };
 
-  const onSubmit = (values) => {
-    alert(JSON.stringify(values, null, 2));
+  const auth = useAuth();
+
+  const onSubmit = async (values) => {
+    const { email, password } = values;
+    await auth.signIn(email, password);
   };
 
   const formik = useFormik({
@@ -32,7 +36,7 @@ const SignInContainer = () => {
 
   useEffect(() => {
     inputRef.current.focus();
-  }, [inputRef]);
+  }, []);
 
   return (
     <SignInForm
