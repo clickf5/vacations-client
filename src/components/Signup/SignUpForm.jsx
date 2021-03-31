@@ -136,11 +136,14 @@ const SignUpForm = (props) => {
                 </p>
               ) : null}
             </div>
-            {status === 1 ? (
+            {status && status.type === 'success' ? (
               <Alert withRedirect redirectTo="/signin">Congratulations!</Alert>
             ) : null}
-            {status === 2 ? (
-              <Alert type="warning">Oops! Something bad!</Alert>
+            {status && status.type === 'warning' ? (
+              <Alert type={status.type}>{status.message}</Alert>
+            ) : null}
+            {status && status.type === 'danger' ? (
+              <Alert type={status.type}>{status.message}</Alert>
             ) : null}
             <div className="flex w-full my-4">
               <button

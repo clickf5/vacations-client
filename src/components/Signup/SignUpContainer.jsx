@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -21,8 +21,6 @@ const SignUpContainer = () => {
       .required('Required'),
   });
 
-  const [status, setStatus] = useState(0);
-
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -30,12 +28,13 @@ const SignUpContainer = () => {
     password: '',
   };
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, { setStatus }) => {
     try {
       await axios.post(routes.signUpPath(), values);
-      setStatus(1);
+      setStatus({ type: 'success' });
     } catch (error) {
-      setStatus(2);
+      const { response: { data } } = error;
+      setStatus({ type: 'warning', message: data.message });
     }
   };
 
@@ -61,7 +60,7 @@ const SignUpContainer = () => {
       isValid={formik.isValid}
       isSubmitting={formik.isSubmitting}
       inputRef={inputRef}
-      status={status}
+      status={formik.status}
     />
   );
 };
