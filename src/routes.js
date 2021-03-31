@@ -7,4 +7,5 @@ export default {
   signInPath: () => [host, prefix, 'signin'].join('/'),
   signUpPath: () => [host, prefix, 'signup'].join('/'),
   signOutPath: () => [host, prefix, 'signout'].join('/'),
+  whoAmIPath: () => [host, prefix, 'whoami'].join('/'),
 };
