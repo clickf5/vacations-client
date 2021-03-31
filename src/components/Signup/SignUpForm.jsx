@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import Alert from '../Alert/Alert.jsx';
+import TimerAlert from '../Alert/TimerAlert.jsx';
 
 const SignUpForm = (props) => {
   const {
@@ -137,13 +138,19 @@ const SignUpForm = (props) => {
               ) : null}
             </div>
             {status && status.type === 'success' ? (
-              <Alert withRedirect redirectTo="/signin">Congratulations!</Alert>
+              <TimerAlert
+                type={status.type}
+                redirectTo="/signin"
+              >
+                Congratulations!
+              </TimerAlert>
             ) : null}
             {status && status.type === 'warning' ? (
-              <Alert type={status.type}>{status.message}</Alert>
-            ) : null}
-            {status && status.type === 'danger' ? (
-              <Alert type={status.type}>{status.message}</Alert>
+              <Alert
+                type={status.type}
+              >
+                {status.message}
+              </Alert>
             ) : null}
             <div className="flex w-full my-4">
               <button
