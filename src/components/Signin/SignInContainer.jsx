@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import SignInForm from './SignInForm.jsx';
@@ -20,10 +21,15 @@ const SignInContainer = () => {
   };
 
   const auth = useAuth();
+  const history = useHistory();
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, { setStatus }) => {
     const { email, password } = values;
-    await auth.signIn(email, password);
+    const result = await auth.signIn(email, password);
+    if (result.success) {
+      history.push('/');
+    }
+    setStatus(result);
   };
 
   const formik = useFormik({
@@ -48,6 +54,7 @@ const SignInContainer = () => {
       isValid={formik.isValid}
       isSubmitting={formik.isSubmitting}
       inputRef={inputRef}
+      status={formik.status}
     />
   );
 };
