@@ -1,6 +1,6 @@
 import React from 'react';
-import authRedirect from '../hoc/authRedirect';
+import withAuthRedirect from '../hoc/withAuthRedirect.js';
 
 const Main = () => <div>Hello world!</div>;
 
-export default authRedirect(Main);
+export default withAuthRedirect(Main);
