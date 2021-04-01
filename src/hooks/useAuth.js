@@ -7,9 +7,7 @@ import routes from '../routes.js';
 const authContext = createContext();
 
 const useAuthProvider = () => {
-  const [user, setUser] = useState();
-  const [isAuthenticate, setIsAuthenticate] = useState(false);
-  const [isFetching, setIsFetching] = useState(false);
+  const [user, setUser] = useState(null);
 
   const signIn = async (email, password) => {
     const result = {};
@@ -17,12 +15,13 @@ const useAuthProvider = () => {
     try {
       const data = { email, password };
       const response = await axios.post(path, data);
-      setUser(JSON.parse(response.body));
+      setUser(response.data);
       result.success = true;
       result.message = 'You is login!';
     } catch (error) {
+      setUser(false);
       result.success = false;
-      result.error = 'Something bad!';
+      result.error = error;
     }
     return result;
   };
@@ -47,24 +46,21 @@ const useAuthProvider = () => {
     return result;
   };
 
-  const refresh = async () => {
-    setIsFetching(true);
-    const path = routes.whoAmIPath();
-    try {
-      const response = await axios.get(path, { withCredentials: true });
-      setUser(response.data);
-      setIsAuthenticate(true);
-    } catch (error) {
-      console.log(error.message);
-    }
-    setIsFetching(false);
-  };
+  useEffect(() => {
+    const refresh = async () => {
+      try {
+        const path = routes.whoAmIPath();
+        const response = await axios.get(path, { withCredentials: true });
+        setUser(response.data);
+      } catch (error) {
+        setUser(false);
+      }
+    };
+    refresh();
+  }, []);
 
   return {
     user,
-    isAuthenticate,
-    isFetching,
-    refresh,
     signIn,
     signUp,
   };
@@ -72,15 +68,7 @@ const useAuthProvider = () => {
 
 export const AuthProvider = ({ children }) => {
   const auth = useAuthProvider();
-
-  useEffect(() => {
-    auth.refresh();
-  }, [auth.isAuthenticate]);
-
-  // TODO: add loader
-  return auth.isFetching ? null : (
-    <authContext.Provider value={auth}>{children}</authContext.Provider>
-  );
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 };
 
 export const useAuth = () => useContext(authContext);
