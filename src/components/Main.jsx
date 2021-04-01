@@ -1,6 +1,14 @@
 import React from 'react';
-import withAuthRedirect from '../hoc/withAuthRedirect.js';
+import useRequireAuth from '../hooks/useRequireAuth.js';
 
-const Main = () => <div>Hello world!</div>;
+const Main = () => {
+  const auth = useRequireAuth();
 
-export default withAuthRedirect(Main);
+  if (!auth.user) {
+    return <div>Loading!</div>;
+  }
+
+  return <div>Hello world!</div>;
+};
+
+export default Main;
