@@ -21,7 +21,7 @@ const useAuthProvider = () => {
     } catch (error) {
       setUser(false);
       result.success = false;
-      result.error = error;
+      result.error = 'Something is bad';
     }
     return result;
   };
