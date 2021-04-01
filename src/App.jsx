@@ -7,6 +7,7 @@ import {
 import Main from './components/Main.jsx';
 import SignInContainer from './components/Signin/SignInContainer.jsx';
 import SignUpContainer from './components/Signup/SignUpContainer.jsx';
+import NotFound from './components/NotFound.jsx';
 
 const App = () => (
   <Router>
@@ -21,7 +22,7 @@ const App = () => (
         <SignUpContainer />
       </Route>
       <Route path="*">
-        <div>404</div>
+        <NotFound />
       </Route>
     </Switch>
   </Router>
