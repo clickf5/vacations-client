@@ -1,9 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
-import routes from '../../routes.js';
 import SignUpForm from './SignUpForm.jsx';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignUpContainer = () => {
   const validationSchema = Yup.object().shape({
@@ -28,14 +27,16 @@ const SignUpContainer = () => {
     password: '',
   };
 
+  const auth = useAuth();
+
   const onSubmit = async (values, { setStatus }) => {
-    try {
-      await axios.post(routes.signUpPath(), values);
-      setStatus({ type: 'success' });
-    } catch (error) {
-      const { response: { data } } = error;
-      setStatus({ type: 'warning', message: data.message });
-    }
+    const {
+      firstName, lastName, email, password,
+    } = values;
+
+    const result = await auth.signUp(firstName, lastName, email, password);
+
+    setStatus(result);
   };
 
   const formik = useFormik({

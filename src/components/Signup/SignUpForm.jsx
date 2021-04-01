@@ -137,19 +137,19 @@ const SignUpForm = (props) => {
                 </p>
               ) : null}
             </div>
-            {status && status.type === 'success' ? (
+            {status && status.success ? (
               <TimerAlert
-                type={status.type}
+                type="success"
                 redirectTo="/signin"
               >
-                Congratulations!
+                {status.message}
               </TimerAlert>
             ) : null}
-            {status && status.type === 'warning' ? (
+            {status && !status.success ? (
               <Alert
-                type={status.type}
+                type="warning"
               >
-                {status.message}
+                {status.error}
               </Alert>
             ) : null}
             <div className="flex w-full my-4">
