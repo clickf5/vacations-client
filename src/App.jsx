@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
+  Redirect,
   Switch,
   Route,
 } from 'react-router-dom';
@@ -13,12 +14,15 @@ const App = () => (
   <Router>
     <Switch>
       <Route exact path="/">
+        <Redirect to="/app" />
+      </Route>
+      <Route path="/app">
         <Main />
       </Route>
-      <Route exact path="/signin">
+      <Route path="/signin">
         <SignInContainer />
       </Route>
-      <Route exact path="/signup">
+      <Route path="/signup">
         <SignUpContainer />
       </Route>
       <Route path="*">
