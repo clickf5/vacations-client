@@ -4,13 +4,13 @@ This is the frontend of the vacation record service.
 
 ### What is done
 
-* Boilerplate
+* Signin page
+* Signup page
 
 ### TODO
 
-* Signin page
-* Signup page
-* User info dashboard
+* Current user sidebar
+* Users page with approve function
 * Vacations dashboard
 
 ### How to use
