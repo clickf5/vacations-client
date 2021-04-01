@@ -8,7 +8,7 @@ const Main = () => {
     return <div>Loading!</div>;
   }
 
-  return <div>Hello world!</div>;
+  return <div>{`Hello, ${auth.user.firstName}`}</div>;
 };
 
 export default Main;
