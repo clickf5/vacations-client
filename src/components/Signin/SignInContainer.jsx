@@ -27,7 +27,7 @@ const SignInContainer = () => {
     const { email, password } = values;
     const result = await auth.signIn(email, password);
     if (result.success) {
-      history.push('/app');
+      history.push('/');
     }
     setStatus(result);
   };
