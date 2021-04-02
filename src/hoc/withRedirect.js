@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 export default (Component) => {
-  const withRedirect = (props) => {
+  const WithRedirect = (props) => {
     const {
       redirect = false,
       redirectTo = '/',
@@ -11,5 +11,5 @@ export default (Component) => {
     return redirect ? <Redirect to={redirectTo} /> : <Component {...props} />;
   };
 
-  return withRedirect;
+  return WithRedirect;
 };
