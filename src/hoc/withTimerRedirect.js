@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import withRedirect from './withRedirect.js';
 
 export default (ComposeComponent) => {
-  const withTimerRedirect = (props) => {
+  const WithTimerRedirect = (props) => {
     const {
       seconds = 5,
     } = props;
@@ -28,5 +28,5 @@ export default (ComposeComponent) => {
     return <Component redirect={redirect} counter={counter} {...props} />;
   };
 
-  return withTimerRedirect;
+  return WithTimerRedirect;
 };
