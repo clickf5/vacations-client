@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from './useAuth.js';
 
-const useRequireAuth = (redirectUrl = '/signin') => {
+const useRequireAuth = (redirectUrl = '/sign-in') => {
   const auth = useAuth();
 
   const history = useHistory();
