@@ -140,7 +140,7 @@ const SignUpForm = (props) => {
             {status && status.success ? (
               <TimerAlert
                 type="success"
-                redirectTo="/signin"
+                redirectTo="/sign-in"
               >
                 {status.message}
               </TimerAlert>
