@@ -11,7 +11,7 @@ const useRequireAuth = (redirectUrl = '/sign-in') => {
     if (auth.user === false) {
       history.push(redirectUrl);
     }
-  }, [auth, history]);
+  }, [auth, history, redirectUrl]);
 
   return auth;
 };
