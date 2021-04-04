@@ -3,9 +3,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
-import Dashboard from './components/Dasboard/Dashboard.jsx';
-import Users from './components/Users/Users.jsx';
+import Protect from './components/Protect/Protect.jsx';
 import SignInContainer from './components/Signin/SignInContainer.jsx';
 import SignUpContainer from './components/Signup/SignUpContainer.jsx';
 import NotFound from './components/NotFound.jsx';
@@ -14,19 +14,22 @@ const App = () => (
   <Router>
     <Switch>
       <Route exact path="/">
-        <Dashboard />
+        <Redirect to="/protect" />
       </Route>
-      <Route path="/users">
-        <Users />
+      <Route path="/protect">
+        <Protect />
       </Route>
-      <Route path="/signin">
+      <Route path="/sign-in">
         <SignInContainer />
       </Route>
-      <Route path="/signup">
+      <Route path="/sign-up">
         <SignUpContainer />
       </Route>
-      <Route path="*">
+      <Route path="/not-found">
         <NotFound />
+      </Route>
+      <Route path="*">
+        <Redirect to="/not-found" />
       </Route>
     </Switch>
   </Router>
