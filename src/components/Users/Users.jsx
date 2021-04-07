@@ -47,9 +47,22 @@ const Users = ({ users }) => {
           </span>
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-          <a href="#" className="text-indigo-600 hover:text-indigo-900">
-            Edit
-          </a>
+          {approved ? (
+            <button type="button" className="px-4 py-1 flex justify-center items-center  bg-red-500 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+              </svg>
+              Dismiss
+            </button>
+          ) : (
+            <button type="button" className="px-4 py-1 flex justify-center items-center  bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              Approve
+            </button>
+          )}
+
         </td>
       </tr>
     );
@@ -89,7 +102,9 @@ const Users = ({ users }) => {
                 <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
                   Approved
                 </th>
-                <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal" />
+                <th scope="col" className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
