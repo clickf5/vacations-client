@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../slices/authSlice.js';
+import usersReducer from '../slices/usersSlice.js';
 
 const reducer = {
-  isAuth: authReducer,
+  users: usersReducer,
 };
 
 export default () => configureStore({
