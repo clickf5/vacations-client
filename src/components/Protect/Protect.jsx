@@ -8,7 +8,7 @@ import {
 import withProtect from '../../hoc/withProtect';
 import Sidebar from '../Sidebar/Sidebar.jsx';
 import Dashboard from '../Dasboard/Dashboard.jsx';
-import Users from '../Users/Users.jsx';
+import UsersContainer from '../Users/UsersContainer.jsx';
 
 const Protect = () => {
   const { path, url } = useRouteMatch();
@@ -24,7 +24,7 @@ const Protect = () => {
             <Dashboard />
           </Route>
           <Route exact path={`${path}/users`}>
-            <Users />
+            <UsersContainer />
           </Route>
           <Route path="*">
             <Redirect to="/not-found" />
