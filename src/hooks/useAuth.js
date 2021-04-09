@@ -10,40 +10,38 @@ const useAuthProvider = () => {
   const [user, setUser] = useState(null);
 
   const signIn = async (email, password) => {
-    const result = {};
     const path = routes.signInPath();
+    const payload = { email, password };
+
     try {
-      const data = { email, password };
-      const response = await axios.post(path, data);
-      setUser(response.data);
-      result.success = true;
-      result.message = 'You is login!';
+      const { data } = await axios.post(path, payload);
+      setUser(data);
     } catch (error) {
       setUser(false);
-      result.success = false;
-      result.error = 'Something is bad';
+      const { data } = error.response;
+      return [true, data.message];
     }
-    return result;
+
+    return [null, 'You is login!'];
   };
 
   const signUp = async (firstName, lastName, email, password) => {
-    const result = {};
     const path = routes.signUpPath();
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
     try {
-      const data = {
-        firstName,
-        lastName,
-        email,
-        password,
-      };
-      await axios.post(path, data);
-      result.success = true;
-      result.message = 'Congratulation! User was created!';
+      await axios.post(path, payload);
     } catch (error) {
-      result.success = false;
-      result.error = 'Something bad!';
+      const { data } = error.response;
+      return [true, data.message];
     }
-    return result;
+
+    return [null, 'Congratulation! User was created!'];
   };
 
   useEffect(() => {

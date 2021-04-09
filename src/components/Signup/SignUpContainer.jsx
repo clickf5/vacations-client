@@ -34,9 +34,20 @@ const SignUpContainer = () => {
       firstName, lastName, email, password,
     } = values;
 
-    const result = await auth.signUp(firstName, lastName, email, password);
+    const [err, message] = await auth.signUp(firstName, lastName, email, password);
 
-    setStatus(result);
+    if (err) {
+      setStatus({
+        type: 'warning',
+        message,
+      });
+      return;
+    }
+
+    setStatus({
+      type: 'success',
+      message,
+    });
   };
 
   const formik = useFormik({

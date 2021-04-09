@@ -25,11 +25,17 @@ const SignInContainer = () => {
 
   const onSubmit = async (values, { setStatus }) => {
     const { email, password } = values;
-    const result = await auth.signIn(email, password);
-    if (result.success) {
-      history.push('/');
+    const [err, message] = await auth.signIn(email, password);
+
+    if (err) {
+      setStatus({
+        type: 'warning',
+        message,
+      });
+      return;
     }
-    setStatus(result);
+
+    history.push('/');
   };
 
   const formik = useFormik({

@@ -91,11 +91,11 @@ const SignInForm = (props) => {
                 </a>
               </div>
             </div>
-            {status && !status.success ? (
+            {status ? (
               <Alert
-                type="warning"
+                type={status.type}
               >
-                {status.error}
+                {status.message}
               </Alert>
             ) : null}
             <div className="flex w-full my-4">
