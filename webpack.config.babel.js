@@ -47,6 +47,10 @@ module.exports = {
     host: 'localhost',
     proxy: {
       '/api': 'http://localhost:9999',
+      '/socket.io': {
+        target: 'ws://localhost:9999',
+        ws: true,
+      },
     },
     compress: true,
     port: 9000,
