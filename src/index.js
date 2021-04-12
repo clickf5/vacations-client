@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
 import { AuthProvider } from './hooks/useAuth';
 import App from './App.jsx';
 import getStore from './store';
-import { approveUser, dismissUser } from './slices/usersSlice.js';
+import { approveUser, dismissUser, addUser } from './slices/usersSlice.js';
 
 import './styles/style.scss';
 
@@ -20,6 +20,10 @@ socket.on('approve', ({ id }) => {
 
 socket.on('dismiss', ({ id }) => {
   store.dispatch(dismissUser(id));
+});
+
+socket.on('signup', (user) => {
+  store.dispatch(addUser(user));
 });
 
 ReactDOM.render(
