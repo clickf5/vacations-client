@@ -11,7 +11,7 @@ const UsersContainer = () => {
     dispatch(fetchUsers());
   }, []);
 
-  if (loading) {
+  if (loading && entities.length === 0) {
     return <div>loading</div>;
   }
 
