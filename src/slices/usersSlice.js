@@ -17,7 +17,12 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    addUser: (state, action) => [...state, action.payload],
+    addUser: (state, action) => (
+      {
+        ...state,
+        entities: [...state.entities, action.payload],
+      }
+    ),
     deleteUser: (state, action) => state.filter((user) => user.id !== action.payload),
     approveUser: (state, action) => {
       const { entities } = state;
