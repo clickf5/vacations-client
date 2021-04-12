@@ -1,7 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
 
-const Users = ({ users }) => {
+const Users = (props) => {
+  const { users, approveHandler, dismissHandler } = props;
   const renderRows = (u) => u.map((user) => {
     const {
       _id: id,
@@ -48,14 +49,22 @@ const Users = ({ users }) => {
         </td>
         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
           {approved ? (
-            <button type="button" className="px-4 py-1 flex justify-center items-center  bg-red-500 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full">
+            <button
+              type="button"
+              className="px-4 py-1 flex justify-center items-center  bg-red-500 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
+              onClick={dismissHandler(id)}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
               </svg>
               Dismiss
             </button>
           ) : (
-            <button type="button" className="px-4 py-1 flex justify-center items-center  bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full">
+            <button
+              type="button"
+              className="px-4 py-1 flex justify-center items-center  bg-green-500 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full"
+              onClick={approveHandler(id)}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" className="mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
