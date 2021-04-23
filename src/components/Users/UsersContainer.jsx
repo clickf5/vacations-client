@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { fetchUsers } from '../../slices/usersSlice.js';
 import Users from './Users.jsx';
+import Loader from '../Loader.jsx';
 import routes from '../../routes.js';
 
 const approveHandler = (id) => async () => {
@@ -24,7 +25,7 @@ const UsersContainer = () => {
   }, []);
 
   if (loading && entities.length === 0) {
-    return <div>loading</div>;
+    return <Loader />;
   }
 
   return <Users users={entities} approveHandler={approveHandler} dismissHandler={dismissHandler} />;
