@@ -8,7 +8,7 @@ const ModalContainer = (props) => {
   const { isOpen, children } = props;
 
   const element = document.createElement('div');
-  element.className = 'relative';
+  // element.className = 'relative';
 
   useEffect(() => {
     modalRoot.appendChild(element);
